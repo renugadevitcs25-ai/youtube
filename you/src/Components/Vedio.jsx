@@ -10,10 +10,10 @@ function Vedio() {
   const [subscribed, setSubscribed] = useState([]);
   const [history, setHistory] = useState([]);
 
-  const navigate = useNavigate();
-
-  const email = localStorage.getItem("user") || "Guest";
-  const username = email.includes("@") ? email.split("@")[0] : email;
+ const navigate = useNavigate();
+const email = localStorage.getItem("user") || "Guest";
+let username = email.includes("@") ? email.split("@")[0] : email;
+username = username.replace(/[0-9]/g, "");
 
   const videos = [
     { id: 1, title: "React Tutorial", url: "https://www.youtube.com/embed/bMknfKXIFA8" },
@@ -35,12 +35,12 @@ function Vedio() {
     localStorage.setItem("videos", JSON.stringify(videos));
   }, []);
 
-  // SEARCH FILTER
+  
   const filtered = videos.filter((v) =>
     v.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  // SAVE TO HISTORY
+ 
   function saveToHistory(id) {
     const current = JSON.parse(localStorage.getItem("history")) || [];
     const updated = [...new Set([...current, id])];
@@ -49,7 +49,7 @@ function Vedio() {
     localStorage.setItem("history", JSON.stringify(updated));
   }
 
-  // LIKE TOGGLE
+ 
   function toggleLike(id) {
     const updated = liked.includes(id)
       ? liked.filter((x) => x !== id)
@@ -59,7 +59,7 @@ function Vedio() {
     localStorage.setItem("liked", JSON.stringify(updated));
   }
 
-  // SUBSCRIBE TOGGLE
+  
   function toggleSubscribe(id) {
     const updated = subscribed.includes(id)
       ? subscribed.filter((x) => x !== id)
@@ -69,7 +69,6 @@ function Vedio() {
     localStorage.setItem("subscribed", JSON.stringify(updated));
   }
 
-  // ▶ WHEN CLICK VIDEO → OPEN SINGLE PAGE
   function openVideo(id) {
     saveToHistory(id);
     navigate(`/video/${id}`);
@@ -77,7 +76,7 @@ function Vedio() {
 
   return (
     <div>
-      {/* NAVBAR */}
+     
       <div
         style={{
           backgroundColor: "red",
@@ -98,8 +97,6 @@ function Vedio() {
         />
 
         <h2 style={{ margin: 0 }}>YouTube</h2>
-
-        {/* SEARCH BAR */}
         <input
           placeholder="Search videos..."
           value={search}
@@ -113,16 +110,12 @@ function Vedio() {
             width: "50%",
           }}
         />
-
-        {/* Username */}
         <span style={{ marginLeft: "auto", fontWeight: "bold", marginRight: "10px" }}>
           {username}
         </span>
       </div>
 
       {sidebar && <Sidebar close={() => setSidebar(false)} />}
-
-      {/* VIDEO LIST */}
       <div
         style={{
           display: "flex",
@@ -134,7 +127,7 @@ function Vedio() {
         {filtered.map((v) => (
           <div
             key={v.id}
-            onClick={() => openVideo(v.id)} // OPEN SINGLE VIDEO PAGE
+            onClick={() => openVideo(v.id)} 
             style={{
               width: "60%",
               backgroundColor: "#fff",
@@ -145,7 +138,7 @@ function Vedio() {
               cursor: "pointer",
             }}
           >
-            {/* SQUARE VIDEO */}
+            
             <div
               style={{
                 width: "100%",
@@ -172,8 +165,6 @@ function Vedio() {
             </div>
 
             <h3 style={{ marginTop: "15px" }}>{v.title}</h3>
-
-            {/* LIKE */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -183,7 +174,6 @@ function Vedio() {
               {liked.includes(v.id) ? "❤️ Unlike" : "🤍 Like"}
             </button>
 
-            {/* SUBSCRIBE */}
             <button
               onClick={(e) => {
                 e.stopPropagation();

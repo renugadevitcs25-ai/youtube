@@ -1,13 +1,8 @@
 import React from "react";
 
 function Liked() {
-  // Load liked IDs
   const liked = JSON.parse(localStorage.getItem("liked")) || [];
-
-  // Load videos list
   const videos = JSON.parse(localStorage.getItem("videos")) || [];
-
-  // Filter only liked videos
   const likedVideos = videos.filter((v) => liked.includes(v.id));
 
   return (

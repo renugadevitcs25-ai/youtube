@@ -1,4 +1,3 @@
-// Home.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -95,7 +94,7 @@ const styles = {
   },
 };
 
-// Extra styling for focus effect
+
 styles.input[":focus"] = {
   borderColor: "red",
 };

@@ -8,7 +8,7 @@ function History() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>📜 Watch History</h2>
+      <h2>Watch History</h2>
 
       {watchedVideos.length === 0 && <p>No videos watched yet.</p>}
 
@@ -16,15 +16,26 @@ function History() {
         <div
           key={v.id}
           style={{
-            background: "#f5f5f5",
-            padding: "15px",
-            marginBottom: "20px",
-            borderRadius: "10px",
-            
+            width: "70%",              
+            margin: "auto",
+            background: "#ffffff",
+            padding: "20px",
+            marginBottom: "40px",
+            borderRadius: "20px",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
           }}
         >
-          <iframe width="100%" height="250" src={v.url}></iframe>
-          <h3>{v.title}</h3>
+          <iframe
+            width="100%"
+            height="350"
+            src={v.url}
+            style={{
+              borderRadius: "15px",
+              border: "none",
+            }}
+          ></iframe>
+
+          <h3 style={{ marginTop: "15px" }}>{v.title}</h3>
         </div>
       ))}
     </div>

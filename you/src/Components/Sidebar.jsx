@@ -1,4 +1,3 @@
-// Sidebar.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -30,26 +29,20 @@ function Sidebar({ close }) {
         Menu
       </h2>
 
-      {/* MENU OPTION STYLE */}
-      <p
-        onClick={() => navigate("/liked")}
-        style={styles.option}
-      >
+      <p onClick={() => navigate("/liked")} style={styles.option}>
         ❤️ Liked Videos
       </p>
 
-      <p
-        onClick={() => navigate("/subscribed")}
-        style={styles.option}
-      >
+      <p onClick={() => navigate("/subscribed")} style={styles.option}>
         🔔 Subscribed
       </p>
 
-      <p
-        onClick={() => navigate("/history")}
-        style={styles.option}
-      >
+      <p onClick={() => navigate("/history")} style={styles.option}>
         🕒 History
+      </p>
+
+      <p onClick={() => navigate("/shorts")} style={styles.option}>
+        🎬 Shorts
       </p>
 
       <button
@@ -84,7 +77,7 @@ const styles = {
   },
 };
 
-// Hover effect using JS
+// Hover styling
 styles.option[":hover"] = {
   backgroundColor: "#ffecec",
 };
